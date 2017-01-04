@@ -6,7 +6,7 @@ configurations
     Toolset
     {
         key : "PlatformToolset"; // this is CoApp pre-defined key
-        choices: { v140, v120, v110, v100 };
+        choices: { v140 };
     };
 }
 
@@ -80,14 +80,14 @@ nuget {
             "..\..\..\third_party\zlib\zutil.h",
             "..\..\..\third_party\zlib\contrib\masmx64\inffas8664.c",
         };
-		("v100,v120,v140", "Win32,x64", "Release,Debug", "Dynamic", "cdecl,stdcall", "MultiByte") => {
+		("v140", "Win32,x64", "Release,Debug", "Dynamic", "cdecl,stdcall", "MultiByte") => {
 			[${0},${1},${2},${3},${4}] {
 				lib:     { .\output\${0}\${1}\${2}\${3}\${4}\${5}\*.lib };
 				bin:     { .\output\${0}\${1}\${2}\${3}\${4}\${5}\*.dll };
 				symbols: { .\output\${0}\${1}\${2}\${3}\${4}\${5}\*.pdb };
 			};
 		};
-		("v100,v120,v140", "Win32,x64", "Release,Debug", "Static,ltcg", "cdecl,stdcall", "MultiByte") => {
+		("v140", "Win32,x64", "Release,Debug", "Static,ltcg", "cdecl,stdcall", "MultiByte") => {
 			[${0},${1},${2},${3},${4}] {
 				lib:     { .\output\${0}\${1}\${2}\${3}\${4}\${5}\*.lib };
 			};

@@ -26,7 +26,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
 
     <!-- Common Compiler Defines (semicolon delimited) -->
-    <Defines>_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;</Defines>
+    <Defines>_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;_WIN32_WINNT=0x0601;NTDDI_VERSION=0x06010000</Defines>
     <Defines Condition="$(IS_STDCALL)">$(Defines);ZLIB_WINAPI;</Defines>
     <Defines Condition="$(IS_DYNAMIC)">$(Defines);ZLIB_DLL;</Defines>
     <Defines Condition="'$(AppContainer)' == 'App'">$(Defines);IOWIN32_USING_WINRT_API=1;</Defines>
@@ -86,6 +86,18 @@
     <Link>
       <BaseAddress>0x5A4C0000</BaseAddress>
     </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Platform)'=='Win32'">
+    <ClCompile>
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Platform)'=='x64'">
+    <ClCompile>
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MultiThreaded</RuntimeLibrary>
+    </ClCompile>
   </ItemDefinitionGroup>
   
   <ItemGroup Condition="'$(UseASM)' == 'ASM'">
